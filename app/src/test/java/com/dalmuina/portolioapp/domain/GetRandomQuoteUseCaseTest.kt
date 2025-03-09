@@ -1,7 +1,6 @@
-package com.curso.kotlin.domain
+package com.dalmuina.portolioapp.domain
 
 import com.dalmuina.portolioapp.data.QuoteRepository
-import com.dalmuina.portolioapp.domain.GetRandomQuoteUseCase
 import com.dalmuina.portolioapp.domain.model.QuoteItem
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery

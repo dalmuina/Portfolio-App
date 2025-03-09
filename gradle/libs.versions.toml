@@ -3,6 +3,7 @@ activityKtx = "1.10.1"
 agp = "8.8.2"
 coreTesting = "2.2.0"
 fragmentKtx = "1.8.6"
+#noinspection GradleDependency
 kotlin = "2.0.0"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -10,7 +11,7 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
 kotlinxCoroutinesAndroid = "1.10.1"
-kotlinxCoroutinesTest = "1.7.3"
+kotlinxCoroutinesTest = "1.10.1"
 lifecycleViewmodelKtx = "2.8.7"
 material = "1.12.0"
 activity = "1.10.1"
@@ -21,6 +22,8 @@ retrofit = "2.9.0"
 dagger = "2.50"
 ksp ="2.0.0-1.0.22"
 roomKtx = "2.6.1"
+detekt = "1.23.0"
+
 
 [libraries]
 
@@ -54,3 +57,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }

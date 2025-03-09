@@ -1,7 +1,7 @@
 package com.dalmuina.portolioapp.ui.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.dalmuina.portolioapp.domain.GetQuotesUseCase
+import com.dalmuina.portolioapp.domain.GetQuoteUseCase
 import com.dalmuina.portolioapp.domain.GetRandomQuoteUseCase
 import com.dalmuina.portolioapp.domain.model.QuoteItem
 import io.mockk.MockKAnnotations
@@ -24,7 +24,7 @@ class QuoteViewModelTest {
     private lateinit var getRandomQuoteUseCase: GetRandomQuoteUseCase
 
     @RelaxedMockK
-    private lateinit var getQuotesUseCase: GetQuotesUseCase
+    private lateinit var getQuotesUseCase: GetQuoteUseCase
 
     private lateinit var quoteViewModel: QuoteViewModel
 
