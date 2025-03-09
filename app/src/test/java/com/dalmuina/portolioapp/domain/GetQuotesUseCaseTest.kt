@@ -1,7 +1,6 @@
-package com.curso.kotlin.domain
+package com.dalmuina.portolioapp.domain
 
 import com.dalmuina.portolioapp.data.QuoteRepository
-import com.dalmuina.portolioapp.domain.GetQuotesUseCase
 import com.dalmuina.portolioapp.domain.model.QuoteItem
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -17,11 +16,11 @@ class GetQuotesUseCaseTest {
     @RelaxedMockK
     private lateinit var quoteRepository: QuoteRepository
 
-    private lateinit var getQuotesUseCase: GetQuotesUseCase
+    private lateinit var getQuotesUseCase: GetQuoteUseCase
     @Before
     fun onBefore(){
         MockKAnnotations.init(this)
-        getQuotesUseCase = GetQuotesUseCase(quoteRepository)
+        getQuotesUseCase = GetQuoteUseCase(quoteRepository)
     }
 
     @Test

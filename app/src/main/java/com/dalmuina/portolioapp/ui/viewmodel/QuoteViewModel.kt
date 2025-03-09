@@ -3,7 +3,7 @@ package com.dalmuina.portolioapp.ui.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dalmuina.portolioapp.domain.GetQuotesUseCase
+import com.dalmuina.portolioapp.domain.GetQuoteUseCase
 import com.dalmuina.portolioapp.domain.GetRandomQuoteUseCase
 import com.dalmuina.portolioapp.domain.model.QuoteItem
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class QuoteViewModel @Inject constructor(private val getQuotesUseCase : GetQuotesUseCase,
+class QuoteViewModel @Inject constructor(private val getQuotesUseCase : GetQuoteUseCase,
                                          private val getRandomQuoteUseCase : GetRandomQuoteUseCase
 ): ViewModel() {
 

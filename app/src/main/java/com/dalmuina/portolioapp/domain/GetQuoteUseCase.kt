@@ -5,7 +5,7 @@ import com.dalmuina.portolioapp.data.database.entities.toDatabase
 import com.dalmuina.portolioapp.domain.model.QuoteItem
 import javax.inject.Inject
 
-class GetQuotesUseCase @Inject constructor(private val repository: QuoteRepository){
+class GetQuoteUseCase @Inject constructor(private val repository: QuoteRepository){
 
     suspend operator fun invoke():List<QuoteItem> {
         val quotes = repository.getAllQuotesFromApi()
