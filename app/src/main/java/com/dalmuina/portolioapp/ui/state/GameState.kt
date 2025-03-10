@@ -5,5 +5,5 @@ data class GameState(
     val descriptionRaw: String ="",
     val metacritic: Int = 0,
     val website: String =" ",
-    val background_image: String = ""
+    val backgroundImage: String = ""
 )

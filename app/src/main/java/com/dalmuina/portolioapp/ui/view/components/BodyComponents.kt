@@ -47,7 +47,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
-import coil.compose.rememberImagePainter
 import com.dalmuina.portolioapp.domain.model.GameItem
 import com.dalmuina.portolioapp.ui.theme.Loader1
 import com.dalmuina.portolioapp.ui.theme.Loader10
@@ -96,7 +95,7 @@ fun CardGame(game: GameItem, onClick:()->Unit){
             .clickable{onClick()}
     )   {
         Column {
-            MainImage(game.background_image)
+            MainImage(game.backgroundImage)
         }
 
     }
@@ -119,7 +118,7 @@ fun MetaWebsite(url:String){
     val context = LocalContext.current
     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
 
-    Column(){
+    Column{
         Text(text= "METASCORE",
             color = Color.White,
             fontWeight = FontWeight.ExtraBold,

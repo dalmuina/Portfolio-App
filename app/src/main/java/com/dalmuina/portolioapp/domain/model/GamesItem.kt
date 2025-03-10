@@ -10,7 +10,7 @@ data class GamesItem(
 data class GameItem(
     val id:Int,
     val name:String,
-    val background_image: String
+    val backgroundImage: String
 )
 
-fun GameModel.toDomain() = GameItem(id, name, background_image)
+fun GameModel.toDomain() = GameItem(id, name, backgroundImage)
