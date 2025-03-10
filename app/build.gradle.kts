@@ -1,9 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -39,12 +41,22 @@ android {
     }
     
     buildFeatures {
-        viewBinding = true
+        compose = true
     }
 
 }
 
 dependencies {
+
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.coil.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -56,6 +68,10 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.kotlinx.coroutines.test)
+    implementation (libs.kotlinx.serialization.json)
+    implementation (libs.kotlinx.serialization.core)
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
 
     // Retrofit
     implementation (libs.retrofit)
