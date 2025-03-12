@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.dalmuina.portolioapp.ui.theme.CUSTOM_BLACK
 import com.dalmuina.portolioapp.ui.view.components.CardGame
 import com.dalmuina.portolioapp.ui.view.components.MainTopBar
 import com.dalmuina.portolioapp.ui.viewmodel.GamesViewModel
@@ -36,7 +37,7 @@ fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues){
     LazyColumn(
         modifier = Modifier
             .padding(pad)
-            .background(Color(0x00000000))
+            .background(CUSTOM_BLACK)
     ){
         items(games){ item ->
             CardGame(item) {
