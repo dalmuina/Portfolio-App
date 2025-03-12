@@ -1,6 +1,7 @@
 package com.dalmuina.portolioapp.data
 
 import com.dalmuina.portolioapp.data.network.GameService
+import com.dalmuina.portolioapp.domain.model.GameDetail
 import com.dalmuina.portolioapp.domain.model.GameItem
 import com.dalmuina.portolioapp.domain.model.toDomain
 import javax.inject.Inject
@@ -12,6 +13,11 @@ class GameRepository @Inject constructor(private val api: GameService) {
         return response?.map {
            it.toDomain()
         }
+    }
+
+    suspend fun getGameById(id: Int): GameDetail? {
+        val response = api.getGameById(id)
+        return response?.toDomain()
     }
 
 }
