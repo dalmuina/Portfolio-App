@@ -1,6 +1,8 @@
 package com.dalmuina.portolioapp.data.network
 
+import com.dalmuina.portolioapp.data.model.GameDetailModel
 import com.dalmuina.portolioapp.data.model.GameModel
+import com.dalmuina.portolioapp.domain.model.GameDetail
 import javax.inject.Inject
 
 class GameService @Inject constructor(private val api:GameApiClient) {
@@ -9,6 +11,14 @@ class GameService @Inject constructor(private val api:GameApiClient) {
         val response = api.getGames()
         if (response.isSuccessful){
             return response.body()?.results
+        }
+        return null
+    }
+
+    suspend fun getGameById(id: Int): GameDetailModel? {
+        val response = api.getGameById(id)
+        if(response.isSuccessful){
+            return response.body()
         }
         return null
     }

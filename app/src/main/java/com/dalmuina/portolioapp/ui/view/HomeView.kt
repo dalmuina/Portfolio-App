@@ -14,25 +14,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.dalmuina.portolioapp.ui.theme.CUSTOM_BLACK
 import com.dalmuina.portolioapp.ui.view.components.CardGame
 import com.dalmuina.portolioapp.ui.view.components.MainTopBar
 import com.dalmuina.portolioapp.ui.viewmodel.GamesViewModel
 
 @Composable
-fun HomeView(viewModel: GamesViewModel){
+fun HomeView(viewModel: GamesViewModel, navController: NavController){
     Scaffold(
         topBar = {
             MainTopBar(title = "API GAMES", onClickBackButton = {})
         }
     ) {
-        ContentHomeView(viewModel, it)
+        ContentHomeView(viewModel, it, navController)
     }
 
 }
 
 @Composable
-fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues){
+fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues, navController: NavController){
     val games by viewModel.games.collectAsState()
     LazyColumn(
         modifier = Modifier
@@ -41,6 +42,7 @@ fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues){
     ){
         items(games){ item ->
             CardGame(item) {
+                navController.navigate("DetailView/${item.id}")
             }
             Text(text = item.name,
                 fontWeight = FontWeight.ExtraBold,
