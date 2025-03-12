@@ -2,7 +2,6 @@ package com.dalmuina.portolioapp.data.network
 
 import com.dalmuina.portolioapp.data.model.GameDetailModel
 import com.dalmuina.portolioapp.data.model.GameModel
-import com.dalmuina.portolioapp.domain.model.GameDetail
 import javax.inject.Inject
 
 class GameService @Inject constructor(private val api:GameApiClient) {
