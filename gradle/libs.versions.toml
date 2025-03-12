@@ -1,6 +1,6 @@
 [versions]
 activityKtx = "1.10.1"
-agp = "8.8.2"
+agp = "8.9.0"
 coreTesting = "2.2.0"
 fragmentKtx = "1.8.6"
 #noinspection GradleDependency
@@ -12,11 +12,8 @@ espressoCore = "3.6.1"
 appcompat = "1.7.0"
 kotlinxCoroutinesAndroid = "1.10.1"
 kotlinxCoroutinesTest = "1.10.1"
-kotlinxSerializationJson = "1.6.3"
-lifecycleViewmodelKtx = "2.8.7"
 material = "1.12.0"
 activity = "1.10.1"
-constraintlayout = "2.2.1"
 mockk = "1.13.5"
 retrofit = "2.9.0"
 
@@ -74,4 +71,3 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
