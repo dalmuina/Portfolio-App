@@ -2,7 +2,6 @@ package com.dalmuina.portolioapp.ui.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.dalmuina.portolioapp.domain.GetAllGamesUseCase
-import com.dalmuina.portolioapp.domain.model.QuoteItem
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.RelaxedMockK
