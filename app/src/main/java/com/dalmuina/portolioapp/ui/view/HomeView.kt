@@ -44,11 +44,13 @@ fun ContentHomeView(viewModel: GamesViewModel, pad: PaddingValues, navController
             CardGame(item) {
                 navController.navigate("DetailView/${item.id}")
             }
-            Text(text = item.name,
-                fontWeight = FontWeight.ExtraBold,
-                color = Color.White,
-                modifier = Modifier.padding(start = 10.dp)
-            )
+            item.name?.let {
+                Text(text = it,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = Color.White,
+                    modifier = Modifier.padding(start = 10.dp)
+                )
+            }
         }
     }
 }

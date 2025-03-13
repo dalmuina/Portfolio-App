@@ -1,6 +1,7 @@
 package com.dalmuina.portolioapp.ui.view.components
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.animation.core.LinearEasing
@@ -102,7 +103,7 @@ fun CardGame(game: GameItem, onClick:()->Unit){
 }
 
 @Composable
-fun MainImage(imageUrl:String){
+fun MainImage(imageUrl:String?){
     val image = rememberAsyncImagePainter(model = imageUrl)
 
     Image(painter = image,
@@ -113,6 +114,7 @@ fun MainImage(imageUrl:String){
             .height(250.dp))
 }
 
+@SuppressLint("UseKtx")
 @Composable
 fun MetaWebsite(url:String){
     val context = LocalContext.current
