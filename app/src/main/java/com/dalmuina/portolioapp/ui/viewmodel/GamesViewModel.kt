@@ -1,8 +1,4 @@
 package com.dalmuina.portolioapp.ui.viewmodel
-
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dalmuina.portolioapp.domain.GetAllGamesUseCase
@@ -12,6 +8,7 @@ import com.dalmuina.portolioapp.domain.model.GameDetail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -25,31 +22,30 @@ class GamesViewModel @Inject constructor(private val getAllGamesUseCase: GetAllG
     private val _games = MutableStateFlow<List<GameItem>>(emptyList())
     val games = _games.asStateFlow()
 
-    var detail by mutableStateOf(GameDetail())
-        private set
+    private val _detail = MutableStateFlow(GameDetail())
+    val detail: StateFlow<GameDetail> = _detail.asStateFlow()
 
     init {
         fetchGames()
     }
 
-    private fun fetchGames(){
+    fun fetchGames(){
         viewModelScope.launch {
-            withContext(Dispatchers.IO){
-                val result = getAllGamesUseCase()
-                _games.value = result ?: emptyList()
+            withContext(Dispatchers.Main){
+                val result = getAllGamesUseCase() ?: emptyList()
+                _games.value = result
             }
         }
     }
 
     fun getGameById(id : Int){
         viewModelScope.launch {
-            withContext(Dispatchers.IO){
+            withContext(Dispatchers.Main){
                 val result = getGameByIdUseCase(id)
-                //val result = repo.getGameById(id)
-                detail = detail.copy(
+                _detail.value = GameDetail(
                     name = result?.name ?: "",
                     descriptionRaw = result?.descriptionRaw ?: "",
-                    metacritic = result?.metacritic ?: 111,
+                    metacritic = result?.metacritic ?: 0,
                     website = result?.website ?: "sin web",
                     backgroundImage = result?.backgroundImage ?: "",
                 )
@@ -58,10 +54,10 @@ class GamesViewModel @Inject constructor(private val getAllGamesUseCase: GetAllG
     }
 
     fun clean(){
-        detail = detail.copy(
+        _detail.value = GameDetail(
             name =  "",
             descriptionRaw =  "",
-            metacritic =  100,
+            metacritic =  0,
             website =  "",
             backgroundImage = "",
         )

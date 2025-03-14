@@ -18,11 +18,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.dalmuina.portolioapp.domain.model.GameDetail
 import com.dalmuina.portolioapp.ui.theme.CUSTOM_BLACK
 import com.dalmuina.portolioapp.ui.view.components.MainImage
 import com.dalmuina.portolioapp.ui.view.components.MainTopBar
@@ -33,6 +36,7 @@ import com.dalmuina.portolioapp.ui.viewmodel.GamesViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailView(viewModel: GamesViewModel, navController: NavController, id: Int) {
+
     LaunchedEffect(Unit) {
         viewModel.getGameById(id)
     }
@@ -42,20 +46,20 @@ fun DetailView(viewModel: GamesViewModel, navController: NavController, id: Int)
             viewModel.clean()
         }
     }
+    val detail by viewModel.detail.collectAsState()
 
     Scaffold(
         topBar = {
-            MainTopBar (title = viewModel.detail.name, showBackButton = true, onClickBackButton = {
+            MainTopBar (title = detail.name, showBackButton = true, onClickBackButton = {
                 navController.popBackStack() })
         }
     ) {
-        ContentDetailView(it, viewModel)
+        ContentDetailView(it, detail)
     }
 }
 
 @Composable
-fun ContentDetailView(pad: PaddingValues, viewModel: GamesViewModel) {
-    val detail = viewModel.detail
+fun ContentDetailView(pad: PaddingValues, detail: GameDetail) {
 
     Column(
         modifier = Modifier

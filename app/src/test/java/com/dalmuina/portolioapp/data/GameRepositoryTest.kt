@@ -33,6 +33,12 @@ class GameRepositoryTest {
         gameRepository = GameRepository(gameService)
     }
 
+    @After
+    fun onAfter() {
+        unmockkStatic("com.dalmuina.portolioapp.domain.model.GamesItemKt")
+        unmockkStatic("com.dalmuina.portolioapp.domain.model.GameDetailKt")
+    }
+
     /********************************/
     /*      GetAllGamesUseCase      */
     /********************************/
@@ -149,11 +155,6 @@ class GameRepositoryTest {
 
         // Then
         assert(result is IllegalArgumentException)
-    }
-
-    @After
-    fun `GamesItem toDomain throws exception Down`() {
-        unmockkStatic("com.dalmuina.portolioapp.domain.model.GamesItemKt")
     }
 
     @Test
@@ -296,11 +297,6 @@ class GameRepositoryTest {
         }
         // Then
         assert(result is IllegalArgumentException)
-    }
-
-    @After
-    fun `GameDetail ToDomain throws and exception down`() {
-        unmockkStatic("com.dalmuina.portolioapp.domain.model.GameDetailKt")
     }
 
     @Test
