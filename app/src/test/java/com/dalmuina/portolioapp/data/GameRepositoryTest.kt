@@ -5,17 +5,18 @@ import com.dalmuina.portolioapp.data.model.GameModel
 import com.dalmuina.portolioapp.data.network.GameService
 import com.dalmuina.portolioapp.domain.model.GamesItem
 import com.dalmuina.portolioapp.domain.model.toDomain
-import com.google.gson.annotations.SerializedName
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.mockkStatic
+import io.mockk.unmockkStatic
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import okio.IOException
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
@@ -30,6 +31,12 @@ class GameRepositoryTest {
     fun onBefore(){
         MockKAnnotations.init(this)
         gameRepository = GameRepository(gameService)
+    }
+
+    @After
+    fun onAfter() {
+        unmockkStatic("com.dalmuina.portolioapp.domain.model.GamesItemKt")
+        unmockkStatic("com.dalmuina.portolioapp.domain.model.GameDetailKt")
     }
 
     /********************************/
@@ -127,27 +134,27 @@ class GameRepositoryTest {
     }
 
     @Test
-    fun `toDomain   throws exception`() = runBlocking{
+    fun `GamesItem toDomain throws exception`() = runBlocking{
         // Test when the `toDomain()` function throws an exception during conversion. 
         // Ensure that it either return null, or throws the error.
         // Given
 
-//        val mockGame = GameModel(1, "game name 1", "https://example.com/game1.jpg")
-//        coEvery { gameService.getGames() } returns listOf(mockGame)
-//
-//        mockkStatic("com.dalmuina.portolioapp.domain.model.GamesItem")
-//        every { mockGame.toDomain() } throws IllegalArgumentException("Invalid data")
-//
-//        // When
-//        val result = try {
-//            gameRepository.getAllGamesFromApi()
-//            null
-//        } catch (e: IllegalArgumentException) {
-//            e
-//        }
-//
-//        // Then
-//        assert(result is IllegalArgumentException)
+        val mockGame = GameModel(1, "game name 1", "https://example.com/game1.jpg")
+        coEvery { gameService.getGames() } returns listOf(mockGame)
+
+        mockkStatic("com.dalmuina.portolioapp.domain.model.GamesItemKt")
+        every { mockGame.toDomain() } throws IllegalArgumentException("Invalid data")
+
+        // When
+        val result = try {
+            gameRepository.getAllGamesFromApi()
+            null
+        } catch (e: IllegalArgumentException) {
+            e
+        }
+
+        // Then
+        assert(result is IllegalArgumentException)
     }
 
     @Test
@@ -212,9 +219,6 @@ class GameRepositoryTest {
         assert(result == mockGames.map { it.toDomain() })
     }
 
-    /********************************/
-    /*      GetGameByIdUseCase      */
-    /********************************/
     @Test
     fun `Successful API response with valid game data`() = runBlocking {
         // Test when the API call to getGameById is successful
@@ -275,6 +279,27 @@ class GameRepositoryTest {
     }
 
     @Test
+    fun `GameDetail ToDomain throws and exception`() = runBlocking {
+        // Test when the API call to getGameById fails and throws an exception
+        // (e.g., network error). Verify that the exception is propagated or handled appropriately
+        // (e.g., return null or an error state).
+        //Given
+        val mockGame = GameDetailModel("game name","description game",99,"Website","background_image")
+        coEvery { gameService.getGameById(1) } returns mockGame
+        mockkStatic("com.dalmuina.portolioapp.domain.model.GameDetailKt")
+        every { mockGame.toDomain()} throws  IllegalArgumentException("Invalid data")
+        // When
+        val result = try {
+            gameRepository.getGameById(1)
+            null
+        } catch (e: Exception) {
+            e
+        }
+        // Then
+        assert(result is IllegalArgumentException)
+    }
+
+    @Test
     fun `API call failure for game by ID`() = runBlocking {
         // Test when the API call to getGameById fails and throws an exception
         // (e.g., network error). Verify that the exception is propagated or handled appropriately
@@ -309,7 +334,6 @@ class GameRepositoryTest {
         // Test when the `toDomain()` function throws an exception
         // during the conversion of the GameDetail data. Ensure that it either returns null,
         // or throws the error.
-        val mockGame = GameDetailModel("game name","description game",99,"Website","background_image")
         coEvery { gameService.getGameById(1) } throws IOException("Network error")
         //When
         val result = try {

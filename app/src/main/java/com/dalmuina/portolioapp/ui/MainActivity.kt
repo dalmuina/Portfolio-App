@@ -1,4 +1,4 @@
-package com.dalmuina.portolioapp.ui.view
+package com.dalmuina.portolioapp.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,7 +13,6 @@ import com.dalmuina.portolioapp.ui.theme.PortfolioAppTheme
 import com.dalmuina.portolioapp.ui.viewmodel.GamesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +22,7 @@ class MainActivity : ComponentActivity() {
             PortfolioAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.Companion.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     NavManager(viewModel)
