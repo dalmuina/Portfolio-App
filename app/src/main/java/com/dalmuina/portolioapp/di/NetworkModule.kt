@@ -1,6 +1,7 @@
 package com.dalmuina.portolioapp.di
 
 import com.dalmuina.portolioapp.data.network.GameApiClient
+import com.dalmuina.portolioapp.data.network.getClient
 import com.dalmuina.portolioapp.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -20,6 +21,7 @@ object NetworkModule {
         return Retrofit.Builder()
             .baseUrl(Constants.URL_BASE)
             .addConverterFactory(GsonConverterFactory.create())
+            .client(getClient())
             .build()
     }
 

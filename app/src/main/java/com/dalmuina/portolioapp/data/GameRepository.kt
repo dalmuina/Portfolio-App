@@ -21,7 +21,8 @@ class GameRepository @Inject constructor(private val api: GameService) {
      *         otherwise returns null.
      *
      * @throws Exception if there is an error during the network request or data mapping.
-     *         Specific exception types are dependent on the underlying API implementation (e.g. IOException, HttpException).
+     *         Specific exception types are dependent on the underlying API implementation
+     *         (e.g. IOException, HttpException).
      *         The caller should handle potential exceptions appropriately.
      */
     suspend fun getAllGamesFromApi(): List<GameItem>?{

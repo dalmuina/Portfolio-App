@@ -3,6 +3,7 @@ package com.dalmuina.portolioapp.ui.view.components
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.net.Uri
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloat
@@ -45,22 +46,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.dalmuina.portolioapp.domain.model.GameItem
-import com.dalmuina.portolioapp.ui.theme.Loader1
-import com.dalmuina.portolioapp.ui.theme.Loader10
-import com.dalmuina.portolioapp.ui.theme.Loader11
-import com.dalmuina.portolioapp.ui.theme.Loader2
-import com.dalmuina.portolioapp.ui.theme.Loader3
-import com.dalmuina.portolioapp.ui.theme.Loader4
-import com.dalmuina.portolioapp.ui.theme.Loader5
-import com.dalmuina.portolioapp.ui.theme.Loader6
-import com.dalmuina.portolioapp.ui.theme.Loader7
-import com.dalmuina.portolioapp.ui.theme.Loader8
-import com.dalmuina.portolioapp.ui.theme.Loader9
-import com.dalmuina.portolioapp.ui.theme.Purple40
+
+@Preview(widthDp = 200)
+@Preview(widthDp = 300)
+@Preview(widthDp = 400)
+@Preview(widthDp = 500)
+@Preview(uiMode = UI_MODE_NIGHT_YES)
+annotation class PreviewWidths
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -68,7 +65,7 @@ fun MainTopBar(title: String, showBackButton: Boolean = false, onClickBackButton
     TopAppBar(
         title = { Text(text = title, color = Color.White, fontWeight = FontWeight.ExtraBold) },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = Purple40),
+            containerColor = MaterialTheme.colorScheme.primary),
         navigationIcon = {
             if(showBackButton){
                 IconButton(onClick={onClickBackButton()}) {
@@ -84,6 +81,17 @@ fun MainTopBar(title: String, showBackButton: Boolean = false, onClickBackButton
             }
         }
     )
+}
+
+@PreviewWidths
+@Composable
+fun MainTopBarPreviewBack(){
+    MainTopBar(title = "API GAMES",true){}
+}
+
+@Composable
+fun MainTopBarPreviewMain(){
+    MainTopBar(title = "API GAMES",false){}
 }
 
 @Composable
@@ -160,17 +168,9 @@ fun ReviewCard(metascore: Int){
 @Composable
 fun Loader(){
     val circleColors:List<Color> = listOf(
-        Loader1,
-        Loader2,
-        Loader3,
-        Loader4,
-        Loader5,
-        Loader6,
-        Loader7,
-        Loader8,
-        Loader9,
-        Loader10,
-        Loader11
+        MaterialTheme.colorScheme.primary,
+        MaterialTheme.colorScheme.secondary,
+        MaterialTheme.colorScheme.primary
     )
 
     val infiniteTransition = rememberInfiniteTransition(label="")
