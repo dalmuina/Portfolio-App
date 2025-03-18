@@ -189,8 +189,10 @@ class GamesViewModelTest {
         // Verify if `getGameById()` works correctly when called multiple times with 
         // different or same ids.
         // Given
-        val gameDetail1 = GameDetail(name = "Game 1", descriptionRaw = "Description 1", metacritic = 90, website = "", backgroundImage = "")
-        val gameDetail2 = GameDetail(name = "Game 2", descriptionRaw = "Description 2", metacritic = 80, website = "", backgroundImage = "")
+        val gameDetail1 = GameDetail(name = "Game 1", descriptionRaw = "Description 1",
+            metacritic = 90, website = "", backgroundImage = "")
+        val gameDetail2 = GameDetail(name = "Game 2", descriptionRaw = "Description 2",
+            metacritic = 80, website = "", backgroundImage = "")
         coEvery { getGameByIdUseCase(1) } returns gameDetail1
         coEvery { getGameByIdUseCase(2) } returns gameDetail2
 
@@ -215,7 +217,8 @@ class GamesViewModelTest {
         // Ensure that calling `clean()` after calling `getGameById()` correctly reverts 
         // the `detail` state to the default.
         // Given
-        val gameDetail = GameDetail(name = "Game 1", descriptionRaw = "Description", metacritic = 90, website = "", backgroundImage = "")
+        val gameDetail = GameDetail(name = "Game 1", descriptionRaw = "Description",
+            metacritic = 90, website = "", backgroundImage = "")
         coEvery { getGameByIdUseCase(1) } returns gameDetail
 
         // When
